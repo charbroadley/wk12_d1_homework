@@ -9,17 +9,28 @@ public class PrinterTests {
 
     @Before
     public void before(){
-        printer = new Printer(52, 10);
+        printer = new Printer(100, 100);
+    }
+
+//    @Test
+//    public void canPrint(){
+//        int result = printer.print(4);
+//        assertEquals(48, result);
+//    }
+//    @Test
+//    public void canReduceToner(){
+//        printer.print(4);
+//        assertEquals(6, printer.tonerVolume);
+//    }
+    @Test
+    public void shouldNotPrintIfNotEnoughPaper() {
+        printer.print(100, 5);
+        assertEquals(100, printer.getPaper());
     }
 
     @Test
-    public void canPrint(){
-        int result = printer.print(4);
-        assertEquals(48, result);
-    }
-    @Test
-    public void canReduceToner(){
-        printer.print(4);
-        assertEquals(6, printer.tonerVolume);
+    public void shouldReduceTonerVolumeWhenPrinting() {
+        printer.print(5, 2);
+        assertEquals(90, printer.getToner());
     }
 }
